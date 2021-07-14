@@ -1,12 +1,24 @@
 import React from 'react'
-import {Navbar,NavDropdown,FormControl,Form,Button,Nav} from 'react-bootstrap'
+import { Component } from 'react';
+import {Navbar,Nav} from 'react-bootstrap'
+import StockContainer from '../container/StockContainer'
+import CompanyAndDateInfo from './CompanyAndDateInfo';
 
 
-const Header = () => {
 
+
+class Header extends Component  {
+  constructor(props) {
+    super(props);
+
+    this.state =
+    {
+     companyCode:' ',companyName:' '
+    }
+  }
+render(){
   return (
 <header>
-
 <Navbar bg="primary" expand="lg" variant="dark">
 <span className="material-icons">
 trending_up
@@ -14,24 +26,14 @@ trending_up
   <Navbar.Brand href="#">E-Stock Market</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Nav.Link href="#" className="text-light w-25">Add Company</Nav.Link>
-  
-  <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="w-50">
-      <NavDropdown title="List of Companies" id="basic-nav-dropdown">
-        <NavDropdown.Item>Company 1</NavDropdown.Item>
-        <NavDropdown.Item>Company 2</NavDropdown.Item>
-        <NavDropdown.Item>Company 3</NavDropdown.Item>
-      </NavDropdown>
-    </Nav>
-    <Form inline>
-      <FormControl type="text" placeholder="Search by Company Code" className="mr-sm-2 w-25" />
-      <Button variant="outline-light">Search</Button>
-    </Form>
-    
-  </Navbar.Collapse>
+ <StockContainer
+ companyCode={this.state.companyCode}
+ companyName={this.state.companyName}/>
 </Navbar>
+<CompanyAndDateInfo companyCode={this.state.companyCode} companyName={this.state.companyName}/>
 </header>
 
-  );
+  )
+}                
 }
 export default Header;
